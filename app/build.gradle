@@ -60,3 +60,9 @@ sceneform.asset('sampledata/models/andy.obj',
         'sampledata/models/andy.sfa',
         'src/main/res/raw/andy')
 
+
+
+sceneform.asset('sampledata/models/chessboardSample.obj',
+        'default',
+        'sampledata/models/chessboardSample.sfa',
+        'src/main/assets/chessboardSample')
