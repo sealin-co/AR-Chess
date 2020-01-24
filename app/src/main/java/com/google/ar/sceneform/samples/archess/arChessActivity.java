@@ -30,6 +30,7 @@ import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
+import com.google.ar.sceneform.Node;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
@@ -42,8 +43,8 @@ public class arChessActivity extends AppCompatActivity {
   private static final double MIN_OPENGL_VERSION = 3.0;
 
   private ArFragment arFragment;
-  private ModelRenderable andyRenderable;
-  private TransformableNode andy;
+  private ModelRenderable boardRenderable;
+  private Node board;
 
   @Override
   @SuppressWarnings({"AndroidApiChecker", "FutureReturnValueIgnored"})
@@ -62,9 +63,9 @@ public class arChessActivity extends AppCompatActivity {
     // When you build a Renderable, Sceneform loads its resources in the background while returning
     // a CompletableFuture. Call thenAccept(), handle(), or check isDone() before calling get().
     ModelRenderable.builder()
-        .setSource(this, R.raw.chessboard)
+        .setSource(this, R.raw.chessboardsample)
         .build()
-        .thenAccept(renderable -> andyRenderable = renderable)
+        .thenAccept(renderable -> boardRenderable = renderable)
         .exceptionally(
             throwable -> {
               Toast toast =
@@ -76,7 +77,7 @@ public class arChessActivity extends AppCompatActivity {
 
     arFragment.setOnTapArPlaneListener(
         (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
-          if (andyRenderable == null)
+          if (boardRenderable == null)
               return;
 
           // Create the Anchor.
@@ -84,14 +85,13 @@ public class arChessActivity extends AppCompatActivity {
           AnchorNode anchorNode = new AnchorNode(anchor);
           anchorNode.setParent(arFragment.getArSceneView().getScene());
 
-          if (andy != null)
+          if (board != null)
               return;
 
           // Create the transformable andy and add it to the anchor.
-          andy = new TransformableNode(arFragment.getTransformationSystem());
-          andy.setParent(anchorNode);
-          andy.setRenderable(andyRenderable);
-          andy.select();
+          board = new Node();
+          board.setParent(anchorNode);
+          board.setRenderable(boardRenderable);
         });
   }
 
