@@ -69,7 +69,7 @@ public class arChessActivity extends AppCompatActivity {
         .exceptionally(
             throwable -> {
               Toast toast =
-                  Toast.makeText(this, "Unable to load andy renderable", Toast.LENGTH_LONG);
+                  Toast.makeText(this, "Unable to load renderable", Toast.LENGTH_LONG);
               toast.setGravity(Gravity.CENTER, 0, 0);
               toast.show();
               return null;
@@ -95,7 +95,7 @@ public class arChessActivity extends AppCompatActivity {
         });
   }
 
-  
+
   /**
    * Returns false and displays an error message if Sceneform can not run, true if Sceneform can run
    * on this device.
