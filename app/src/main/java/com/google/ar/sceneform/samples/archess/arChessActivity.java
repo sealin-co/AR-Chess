@@ -36,7 +36,7 @@ import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 
 /**
- * This is an example activity that uses the Sceneform UX package to make common AR tasks easier.
+ * This is augmented reality chess built using Google's HelloSceneform as a base.
  */
 public class arChessActivity extends AppCompatActivity {
   private static final String TAG = arChessActivity.class.getSimpleName();
@@ -95,6 +95,7 @@ public class arChessActivity extends AppCompatActivity {
         });
   }
 
+  
   /**
    * Returns false and displays an error message if Sceneform can not run, true if Sceneform can run
    * on this device.
